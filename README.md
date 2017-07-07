@@ -62,9 +62,9 @@ Bulk upload menu items
         ]
         Return HttpStatus.CREATED
 	
-Update a menu by restaurant Id and menu name    
+Update a menu by menu Id
 
-    PUT  localhost:8001/restaurants/{restaurantId}/menu/{menuName}
+    PUT  localhost:8001/restaurants/menu/{menuId}
 	Request Body
         {
                 "restaurantId": <restaurantId>,
@@ -75,18 +75,86 @@ Update a menu by restaurant Id and menu name
         Return HttpStatus.CREATED
 
 ### 2.Order Service
-Create a Order
+Create an Order
 
-    Post  /order/create/
-	//Post Body: Items, quantity, address, note, Creditcard info
+    POST localhost:8002/orders/{restaurantId}
+    {
+        "restaurantId": <restaurant_id>,
+        "items":
+        [
+            {
+                "name": <menu_item_name>,
+                "price": <menu_item_price>,
+                "quantity": <number of items>
+            },
+            ...
+        ],
+        "userInfo":
+        {
+            "firstName": <customer_first_name>,
+            "lastName": <customer_last_name>,
+            "phone": <customer_phone>,
+            "address": <customer_address>
+        },
+        "specialNote": <special_note>
+    }
+    Return:
+    HttpStatus.CREATED
+    {
+        "id": <order_id>,
+        "restaurantId": <restaurant_id>,
+        "items":
+        [
+            {
+                "name": <menu_item_name>,
+                "price": <menu_item_price>,
+                "quantity": <# of items>
+            },
+            ...
+        ],
+        "userInfo":
+        {
+            "firstName": <customer_first_name>,
+            "lastName": <customer_last_name>,
+            "phone": <customer_phone>,
+            "address": <customer_address>
+        },
+        "specialNote": <special_note>,
+        "totalPrice": <total_price>,
+        "orderTime": <order_time_in_milliseconds>
+    }
 
-Delete a Order by orderId
 
-    Delete  /order/purge/{orderId}
 
 Get order detail
 
-    Get /order/detail/{orderId}
+    POST localhost:8002/orders/{orderId}
+    Return:
+        
+        {
+            "id": <order_id>,
+            "restaurantId": <restaurant_id>,
+            "items":
+            [
+                {
+                    "name": <menu_item_name>,
+                    "price": <menu_item_price>,
+                    "quantity": <# of items>
+                },
+                ...
+            ],
+            "userInfo":
+            {
+                "firstName": <customer_first_name>,
+                "lastName": <customer_last_name>,
+                "phone": <customer_phone>,
+                "address": <customer_address>
+            },
+            "specialNote": <special_note>,
+            "totalPrice": <total_price>,
+            "orderTime": <order_time_in_milliseconds>
+        }
+    
 
 ### 3.Payment Service
 Make a payment
