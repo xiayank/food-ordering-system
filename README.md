@@ -228,4 +228,5 @@ Complete Order
         "deliveryTime": <food_delivery_time>,
         "paymentId": <payment_id>
     }
+    Note: This API will serialize the order to WebSocket channel: "topic/orders", UI can subscribe to this channel to receive message and display to user.
     
