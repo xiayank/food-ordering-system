@@ -1,7 +1,7 @@
 # food-ordering-system
 
 ## Rest APIs
-### 1. Restaurant Service
+### Restaurant Service
 Search Restaurant by Name
     
     GET localhost:8001/restaurants/{restaurant_name}
@@ -74,7 +74,7 @@ Update a menu by menu Id
         }
         Return HttpStatus.CREATED
 
-### 2.Order Service
+### Order Service
 Create an Order
 
     POST localhost:8002/orders/{restaurantId}
@@ -155,23 +155,79 @@ Get order detail
             "orderTime": <order_time_in_milliseconds>
         }
     
+    
+### Payment Distribution Service
+Distribute payment
+         
+         POST localhost:8003/payments
+         {
+             "orderId": <order_id>,
+             "amount": <payment_amount>,
+             "creditCardInfo": 
+             {
+                 "firstName": <first_name>,
+                 "lastName": <lastName>,
+                 "expiredMonth": <month>,
+                 "expiredYear": <year>,
+                 "securityCode": <security_code>
+             }
+         }
+         
+         Because the process to make payments can be slow and be bottleneck of project
+         so this API will produce the payment info into Message Queue. Let Payment Service to consume.
 
-### 3.Payment Service
+### Payment Service
 Make a payment
 
-    Post /order/{orderId}/payment
-    //post body: Credit card info
+    POST localhost:8004/payments
+    {
+        "orderId": <order_id>,
+        
+        "creditCardInfo": 
+        {
+            "firstName": <first_name>,
+            "lastName": <lastName>,
+            "expiredMonth": <month>,
+            "expiredYear": <year>,
+            "securityCode": <security_code>
+        }
+    }
+    Return
+    HttpStatus.CREATED
+    Note: this API will store the payment into DB, find the matching order 
+    and update the order paymentId, deliveryTime, and notify Order Complete Service with RestTemplate.
 
-Validate payment by paymentId
-
-    Get  /order/payment/validate/{paymentId}
-
-Get payment detail by paymentId
-
-    Get /order/payment/detail/{paymentId}
 
 
-###4. Delivery Service
+### Order Complete Service
+Complete Order
+    
+    POST localhost:8005/api/orders
+    {
+        "id": <order_id>,
+        "items":
+        [
+            {
+                "name": <menu_item_name>,
+                "price": <menu_item_price>,
+                "quantity": <# of items>
+            },
+            ...
+        ],
+        "userInfo":
+        {
+            "firstName": <customer_first_name>,
+            "lastName": <customer_last_name>,
+            "phone": <customer_phone>,
+            "address": <customer_address>
+        },
+        "specialNote": <special_note>,
+        "totalPrice": <total_order_price>,
+        "orderTime": <order_time>,
+        "deliveryTime": <food_delivery_time>,
+        "paymentId": <payment_id>
+    }
+    
 Store order info into orderDB
 
     Post /order/store/{orderId}
