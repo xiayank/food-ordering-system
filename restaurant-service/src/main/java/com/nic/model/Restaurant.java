@@ -1,4 +1,4 @@
-package model;
+package com.nic.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
