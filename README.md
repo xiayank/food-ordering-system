@@ -224,15 +224,8 @@ Complete Order
         "specialNote": <special_note>,
         "totalPrice": <total_order_price>,
         "orderTime": <order_time>,
+        
         "deliveryTime": <food_delivery_time>,
         "paymentId": <payment_id>
     }
     
-Store order info into orderDB
-
-    Post /order/store/{orderId}
-    //order info
-
-Generate delivery time when payment done
-
-    Get /order/{orderId}/deliveryTime
