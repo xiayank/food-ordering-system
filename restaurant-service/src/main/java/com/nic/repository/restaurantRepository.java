@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
  * Created by NIC on 7/7/17.
  */
 @RepositoryRestResource(path = "restaurants", collectionResourceRel= "restaurants")
-public interface restaurantRepository extends PagingAndSortingRepository<Restaurant, String>{
+public interface RestaurantRepository extends PagingAndSortingRepository<Restaurant, String>{
     @RestResource(rel = "byName", description = @Description("Find by name"))
     public Restaurant findFirstByName(@Param("name") String name);
 }

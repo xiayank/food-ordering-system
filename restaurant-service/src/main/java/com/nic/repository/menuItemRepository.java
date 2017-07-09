@@ -12,7 +12,8 @@ import java.util.List;
  * Created by NIC on 7/7/17.
  */
 @RepositoryRestResource(collectionResourceRel = "menuItems")
-public interface menuItemRepository extends PagingAndSortingRepository<MenuItem, String>{
+public interface MenuItemRepository extends PagingAndSortingRepository<MenuItem, String>{
     @RestResource(rel = "byRestaurantId")
     public List<MenuItem> findAllByRestaurantId(@Param("restaurantId") String restaurantId);
+
 }
