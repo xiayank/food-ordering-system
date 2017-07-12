@@ -14,6 +14,6 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "menuItems")
 public interface MenuItemRepository extends PagingAndSortingRepository<MenuItem, String>{
     @RestResource(rel = "byRestaurantId")
-    public List<MenuItem> findAllByRestaurantId(@Param("restaurantId") String restaurantId);
+    List<MenuItem> findAllByRestaurantId(@Param("restaurantId") String restaurantId);
 
 }
