@@ -14,10 +14,10 @@ public class RestaurantRestController {
     private MenuItemService menuItemService;
 
     @Autowired
-
     public RestaurantRestController(RestaurantService restaurantService, MenuItemService menuItemService){
         this.restaurantService = restaurantService;
         this.menuItemService = menuItemService;
     }
+
 
 }

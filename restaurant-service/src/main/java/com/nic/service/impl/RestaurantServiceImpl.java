@@ -4,10 +4,12 @@ import com.nic.model.Restaurant;
 import com.nic.repository.RestaurantRepository;
 import com.nic.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by NIC on 7/9/17.
  */
+@Service
 public class RestaurantServiceImpl implements RestaurantService {
     private RestaurantRepository restaurantRepository;
 
