@@ -16,6 +16,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>restaurant-service</module>
+        <module>order-service</module>
     </modules>
 
     <dependencyManagement>
