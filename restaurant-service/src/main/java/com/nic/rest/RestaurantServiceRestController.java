@@ -14,12 +14,12 @@ import java.util.List;
  * Created by NIC on 7/9/17.
  */
 @RestController
-public class RestaurantRestController {
+public class RestaurantServiceRestController {
     private RestaurantService restaurantService;
     private MenuItemService menuItemService;
 
     @Autowired
-    public RestaurantRestController(RestaurantService restaurantService, MenuItemService menuItemService){
+    public RestaurantServiceRestController(RestaurantService restaurantService, MenuItemService menuItemService){
         this.restaurantService = restaurantService;
         this.menuItemService = menuItemService;
     }
