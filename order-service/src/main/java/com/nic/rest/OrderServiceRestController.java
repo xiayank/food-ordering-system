@@ -3,7 +3,9 @@ package com.nic.rest;
 import com.nic.model.Order;
 import com.nic.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,8 +19,8 @@ public class OrderServiceRestController {
     public OrderServiceRestController(OrderService orderService){
         this.orderService = orderService;
     }
-    @RequestMapping(value = "/restaurants/orders")
-    public void createOrder(Order order){
+    @RequestMapping(value = "/restaurants/orders", method = RequestMethod.POST)
+    public void createOrder(@RequestBody Order order){
         orderService.createOrder(order);
     }
 }

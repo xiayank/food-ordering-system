@@ -5,23 +5,22 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Embedded;
 import java.util.List;
 
 /**
  * Created by NIC on 7/12/17.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
 @Document
 public class Order {
     @Id
     private String id;
 
-    @Embedded
+    //@Embedded
     private List<MenuItemQuantity> menuItemList;
 
-    @Embedded
+    //@Embedded
     private UserInfo userInfo;
 
     private String restaurantId;
