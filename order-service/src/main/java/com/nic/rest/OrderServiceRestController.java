@@ -19,6 +19,7 @@ public class OrderServiceRestController {
     public OrderServiceRestController(OrderService orderService){
         this.orderService = orderService;
     }
+
     @RequestMapping(value = "/restaurants/orders", method = RequestMethod.POST)
     public void createOrder(@RequestBody Order order){
         orderService.createOrder(order);
