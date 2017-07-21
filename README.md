@@ -155,7 +155,9 @@ Get order detail
             "orderTime": <order_time_in_milliseconds>
         }
     
-    
+> 将payment post到 Distribution service上，payment 会 distribute到queue里，payment service中的PaymentSink.class来consume，将payment
+ 发到complete updater上restTemplate.postForLocation(orderCompleteUpdater + "/api/orders", order); 使用updater的rest api中 template.convertAndSend("/topic/orders", order);
+  /topic/orders定义在updater WebSocketApi.class里。
 ### Payment Distribution Service
 Distribute payment
          
