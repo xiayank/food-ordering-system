@@ -21,6 +21,7 @@
         <module>platform</module>
         <module>payment-distribution</module>
         <module>payment-service</module>
+        <module>payment-distribution</module>
 
     </modules>
 
